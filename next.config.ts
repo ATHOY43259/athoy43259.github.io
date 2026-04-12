@@ -1,10 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: "export",
   images: {
     unoptimized: true,
   },
+  // Exclude Sanity Studio from static export
+  exportPathMap: async function () {
+    return {
+      "/": { page: "/" },
+    };
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
