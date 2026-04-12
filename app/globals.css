@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* ── Custom breakpoints ── */
+@theme {
+  --breakpoint-xs: 480px;
+}
+
+
 /* ── Dark theme (default) ── */
 :root,
 .dark {
@@ -97,4 +103,10 @@ body {
 .nav-link:hover::after { width: 100%; }
 
 /* ── Section spacing ── */
-section { padding-top: 7rem; padding-bottom: 7rem; }
+section { padding-top: 4rem; padding-bottom: 4rem; }
+@media (min-width: 640px) {
+  section { padding-top: 6rem; padding-bottom: 6rem; }
+}
+@media (min-width: 1024px) {
+  section { padding-top: 7rem; padding-bottom: 7rem; }
+}

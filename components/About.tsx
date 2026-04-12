@@ -44,13 +44,13 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <p className="text-slate-200 text-xl leading-[1.85] mb-6 font-light">
+            <p className="dark:text-slate-200 text-slate-700 text-base sm:text-xl leading-[1.8] mb-5 sm:mb-6 font-light">
               I&apos;m a{" "}
               <span className="text-[#a78bfa] font-semibold">Full Stack Developer</span>{" "}
               based in Dhaka, Bangladesh, with over a year of professional experience
               building production-grade web applications from the ground up.
             </p>
-            <p className="text-slate-400 text-lg leading-[1.85] mb-6">
+            <p className="dark:text-slate-400 text-slate-600 text-base sm:text-lg leading-[1.8] mb-5 sm:mb-6">
               Currently working as an{" "}
               <span className="text-[#38bdf8] font-medium">
                 Associate Software Engineer at Cassetex
@@ -59,7 +59,7 @@ export default function About() {
               optimizing PostgreSQL databases to automating CI/CD pipelines on Linux
               VPS via GitHub Actions.
             </p>
-            <p className="text-slate-400 text-lg leading-[1.85] mb-10">
+            <p className="dark:text-slate-400 text-slate-600 text-base sm:text-lg leading-[1.8] mb-8 sm:mb-10">
               I hold a{" "}
               <span className="text-white font-semibold">B.Sc. in Computer Science and Engineering</span>{" "}
               from American International University-Bangladesh (AIUB). Passionate

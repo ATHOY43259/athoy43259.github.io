@@ -231,19 +231,19 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Floating badges */}
+              {/* Floating badges — hidden on smallest screens to avoid overflow */}
               <motion.div
-                animate={{ y: [-5, 5, -5] }}
+                animate={{ y: [-4, 4, -4] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-4 top-10 bg-[#1a1a2e] border border-[#2d2d4e] rounded-xl px-3 py-2 text-xs font-medium shadow-lg glow-purple"
+                className="hidden xs:block absolute -right-2 sm:-right-4 top-8 sm:top-10 bg-[#1a1a2e] border border-[#2d2d4e] rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs font-medium shadow-lg glow-purple"
               >
                 <span className="text-[#6c63ff]">1+</span>{" "}
-                <span className="text-slate-300">Years Exp.</span>
+                <span className="text-slate-300">Yrs Exp.</span>
               </motion.div>
               <motion.div
-                animate={{ y: [5, -5, 5] }}
+                animate={{ y: [4, -4, 4] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                className="absolute -left-4 bottom-16 bg-[#1a1a2e] border border-[#2d2d4e] rounded-xl px-3 py-2 text-xs font-medium shadow-lg glow-blue"
+                className="hidden xs:block absolute -left-2 sm:-left-4 bottom-12 sm:bottom-16 bg-[#1a1a2e] border border-[#2d2d4e] rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs font-medium shadow-lg glow-blue"
               >
                 <span className="text-[#38bdf8]">3+</span>{" "}
                 <span className="text-slate-300">Projects</span>
