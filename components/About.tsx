@@ -61,7 +61,7 @@ export default function About() {
             </p>
             <p className="dark:text-slate-400 text-slate-600 text-sm sm:text-base lg:text-lg leading-[1.8] mb-6 sm:mb-8">
               I hold a{" "}
-              <span className="text-white font-semibold">B.Sc. in Computer Science and Engineering</span>{" "}
+              <span className="dark:text-white text-slate-900 font-semibold">B.Sc. in Computer Science and Engineering</span>{" "}
               from American International University-Bangladesh (AIUB). Passionate
               about clean architecture, secure systems, and continuously levelling
               up my craft.
