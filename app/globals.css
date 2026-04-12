@@ -41,11 +41,17 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   background-color: var(--bg-base);
   color: var(--text-primary);
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  max-width: 100%;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

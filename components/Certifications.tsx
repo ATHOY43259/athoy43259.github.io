@@ -9,7 +9,7 @@ export default function Certifications({ data }: { data: SanityCertification[] }
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
 
   return (
-    <section id="certifications" ref={ref} className="py-28 sm:py-32 dark:bg-[#0f0f1a] bg-white">
+    <section id="certifications" ref={ref} className="py-28 sm:py-32 dark:bg-[#0f0f1a] bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header */}

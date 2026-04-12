@@ -10,7 +10,7 @@ export default function Projects({ data }: { data: SanityProject[] }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.08 });
 
   return (
-    <section id="projects" ref={ref} className="py-28 sm:py-32 dark:bg-[#0a0a14] bg-slate-50">
+    <section id="projects" ref={ref} className="py-28 sm:py-32 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header */}

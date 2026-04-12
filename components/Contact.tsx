@@ -57,7 +57,7 @@ export default function Contact() {
     "placeholder-slate-600 focus:outline-none focus:border-[#6c63ff]/60 focus:ring-2 focus:ring-[#6c63ff]/20 transition-all duration-200";
 
   return (
-    <section id="contact" ref={ref} className="py-28 sm:py-32 dark:bg-[#0a0a14] bg-slate-50">
+    <section id="contact" ref={ref} className="py-28 sm:py-32 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header */}
@@ -101,7 +101,7 @@ export default function Contact() {
                   (e.currentTarget as HTMLElement).style.boxShadow = `0 8px 30px ${info.color}18`;
                 }}
                 onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = "#2d2d4e";
+                  (e.currentTarget as HTMLElement).style.borderColor = "";
                   (e.currentTarget as HTMLElement).style.boxShadow = "";
                 }}
               >
@@ -137,8 +137,8 @@ export default function Contact() {
                     (e.currentTarget as HTMLElement).style.background = `${color}18`;
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.borderColor = "#2d2d4e";
-                    (e.currentTarget as HTMLElement).style.background = "#1a1a2e";
+                    (e.currentTarget as HTMLElement).style.borderColor = "";
+                    (e.currentTarget as HTMLElement).style.background = "";
                   }}
                 >
                   <Icon size={20} style={{ color }} />

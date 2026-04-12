@@ -10,7 +10,7 @@ export default function Education({ data }: { data: SanityEducation[] }) {
   const inView = useInView(ref, { once: true, margin: "-80px 0px" });
 
   return (
-    <section id="education" className="py-24 sm:py-32 dark:bg-[#0a0a14] bg-slate-50">
+    <section id="education" className="py-24 sm:py-32 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
       <div className="max-w-4xl mx-auto px-6 sm:px-10">
 
         {/* Header */}

@@ -214,7 +214,7 @@ export default function Experience({ data }: { data: SanityExperience[] }) {
   const headerInView = useInView(headerRef, { once: true, margin: "-60px 0px" });
 
   return (
-    <section id="experience" className="py-28 sm:py-32 dark:bg-[#0f0f1a] bg-white">
+    <section id="experience" className="py-28 sm:py-32 dark:bg-[#0f0f1a] bg-white overflow-hidden">
       <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
         <motion.div
           ref={headerRef}
