@@ -20,12 +20,19 @@ export default function Contact() {
     e.preventDefault();
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method:  "POST",
         headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify(form),
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "",
+          subject:    `[Portfolio] ${form.subject}`,
+          from_name:  form.name,
+          replyto:    form.email,
+          message:    `Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`,
+        }),
       });
-      if (!res.ok) throw new Error("send failed");
+      const data = await res.json();
+      if (!data.success) throw new Error("send failed");
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
     } catch {

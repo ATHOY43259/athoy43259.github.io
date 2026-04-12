@@ -4,7 +4,8 @@ import { visionTool } from "@sanity/vision";
 import { schemaTypes } from "./sanity/schemaTypes";
 
 export default defineConfig({
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  // "not-configured" is a valid placeholder — only lowercase/digits/dashes allowed by Sanity
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "not-configured",
   dataset:   process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
   title:     "Portfolio Admin",
   basePath:  "/studio",

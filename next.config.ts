@@ -1,14 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
+  trailingSlash: true,   // required for GitHub Pages routing
   images: {
     unoptimized: true,
-  },
-  // Exclude Sanity Studio from static export
-  exportPathMap: async function () {
-    return {
-      "/": { page: "/" },
-    };
   },
 };
 
