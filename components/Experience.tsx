@@ -214,22 +214,22 @@ export default function Experience({ data }: { data: SanityExperience[] }) {
   const headerInView = useInView(headerRef, { once: true, margin: "-60px 0px" });
 
   return (
-    <section id="experience" className="py-28 sm:py-32 dark:bg-[#0f0f1a] bg-white overflow-hidden">
-      <div className="max-w-3xl mx-auto px-5 sm:px-8 lg:px-12">
+    <section id="experience" className="py-14 sm:py-20 lg:py-28 dark:bg-[#0f0f1a] bg-white overflow-hidden">
+      <div className="max-w-3xl mx-auto px-4 sm:px-8 lg:px-12">
         <motion.div
           ref={headerRef}
           initial={{ opacity: 0, y: 30 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-14"
         >
-          <span className="inline-flex items-center gap-2 text-[#6c63ff] text-sm font-semibold uppercase tracking-[0.2em]">
-            <Briefcase size={14} /> Work History
+          <span className="inline-flex items-center gap-2 text-[#6c63ff] text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
+            <Briefcase size={12} /> Work History
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold mt-3 dark:text-white text-slate-900">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 dark:text-white text-slate-900">
             My <span className="gradient-text">Experience</span>
           </h2>
-          <div className="mt-5 h-1 w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
+          <div className="mt-4 h-1 w-16 sm:w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
         </motion.div>
 
         <div>

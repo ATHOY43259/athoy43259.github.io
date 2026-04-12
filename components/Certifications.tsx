@@ -9,7 +9,7 @@ export default function Certifications({ data }: { data: SanityCertification[] }
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
 
   return (
-    <section id="certifications" ref={ref} className="py-28 sm:py-32 dark:bg-[#0f0f1a] bg-white overflow-hidden">
+    <section id="certifications" ref={ref} className="py-14 sm:py-20 lg:py-28 dark:bg-[#0f0f1a] bg-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header */}
@@ -17,14 +17,14 @@ export default function Certifications({ data }: { data: SanityCertification[] }
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-14"
         >
-          <span className="text-[#6c63ff] text-sm font-semibold uppercase tracking-[0.2em]">Credentials</span>
-          <h2 className="text-4xl sm:text-5xl font-bold mt-3 dark:text-white text-slate-900">
+          <span className="text-[#6c63ff] text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">Credentials</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 dark:text-white text-slate-900">
             My <span className="gradient-text">Certifications</span>
           </h2>
-          <div className="mt-5 h-1 w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
-          <p className="dark:text-slate-400 text-slate-500 text-lg mt-5 max-w-xl mx-auto leading-relaxed">
+          <div className="mt-4 h-1 w-16 sm:w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
+          <p className="dark:text-slate-400 text-slate-500 text-sm sm:text-base mt-3 sm:mt-4 max-w-xl mx-auto leading-relaxed">
             Professional certifications from IBM and ICT Division validating my skills in software engineering, DevOps, and cloud computing.
           </p>
         </motion.div>

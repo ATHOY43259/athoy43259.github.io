@@ -10,8 +10,8 @@ export default function Education({ data }: { data: SanityEducation[] }) {
   const inView = useInView(ref, { once: true, margin: "-80px 0px" });
 
   return (
-    <section id="education" className="py-24 sm:py-32 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6 sm:px-10">
+    <section id="education" className="py-14 sm:py-20 lg:py-28 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 lg:px-10">
 
         {/* Header */}
         <motion.div
@@ -19,13 +19,13 @@ export default function Education({ data }: { data: SanityEducation[] }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-10 sm:mb-14"
         >
-          <span className="inline-block text-xs font-bold uppercase tracking-[0.2em] text-[#6c63ff] mb-3">
+          <span className="inline-block text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-[#6c63ff] mb-2 sm:mb-3">
             Academic Background
           </span>
-          <h2 className="text-4xl sm:text-5xl font-bold dark:text-white text-slate-900 leading-tight">Education</h2>
-          <div className="mt-4 w-12 h-[3px] rounded-full bg-[#6c63ff]" />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold dark:text-white text-slate-900 leading-tight">Education</h2>
+          <div className="mt-3 sm:mt-4 w-10 sm:w-12 h-[3px] rounded-full bg-[#6c63ff]" />
         </motion.div>
 
         {/* Timeline */}

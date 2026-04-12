@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ── Tell Tailwind v4: dark: variant = .dark class (for next-themes) ── */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ── Custom breakpoints ── */
 @theme {
   --breakpoint-xs: 480px;

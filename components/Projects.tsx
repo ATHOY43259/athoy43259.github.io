@@ -10,7 +10,7 @@ export default function Projects({ data }: { data: SanityProject[] }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.08 });
 
   return (
-    <section id="projects" ref={ref} className="py-28 sm:py-32 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
+    <section id="projects" ref={ref} className="py-14 sm:py-20 lg:py-28 dark:bg-[#0a0a14] bg-slate-50 overflow-hidden">
       <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header */}
@@ -18,20 +18,20 @@ export default function Projects({ data }: { data: SanityProject[] }) {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-14"
         >
-          <span className="text-[#6c63ff] text-sm font-semibold uppercase tracking-[0.2em]">Portfolio</span>
-          <h2 className="text-4xl sm:text-5xl font-bold mt-3 dark:text-white text-slate-900">
+          <span className="text-[#6c63ff] text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">Portfolio</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 dark:text-white text-slate-900">
             Featured <span className="gradient-text">Projects</span>
           </h2>
-          <div className="mt-5 h-1 w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
-          <p className="dark:text-slate-400 text-slate-500 text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
+          <div className="mt-4 h-1 w-16 sm:w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
+          <p className="dark:text-slate-400 text-slate-500 text-sm sm:text-base lg:text-lg mt-3 sm:mt-4 max-w-2xl mx-auto leading-relaxed">
             A selection of projects showcasing my technical range across different domains and technologies.
           </p>
         </motion.div>
 
         {/* Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-7">
           {data.map((project, i) => (
             <motion.div
               key={project._id ?? project.title}
