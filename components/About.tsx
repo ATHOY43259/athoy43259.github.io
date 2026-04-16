@@ -2,18 +2,24 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Code2, Server, Database, GitBranch, Users, Rocket } from "lucide-react";
+import { Code2, Server, Database, GitBranch, Users, Rocket, type LucideIcon } from "lucide-react";
+import type { SiteSettings } from "@/lib/types";
 
-const highlights = [
-  { icon: Code2,     label: "Frontend",   desc: "React.js & Next.js" },
-  { icon: Server,    label: "Backend",    desc: "Laravel & ASP.NET"  },
-  { icon: Database,  label: "Database",   desc: "PostgreSQL & MySQL" },
-  { icon: GitBranch, label: "DevOps",     desc: "CI/CD & Linux VPS"  },
-  { icon: Users,     label: "Teamwork",   desc: "Agile & Cross-functional" },
-  { icon: Rocket,    label: "Deployment", desc: "GitHub Actions & SSH" },
-];
+const iconMap: Record<string, LucideIcon> = {
+  Frontend:   Code2,
+  Backend:    Server,
+  Database:   Database,
+  DevOps:     GitBranch,
+  Teamwork:   Users,
+  Deployment: Rocket,
+};
 
-export default function About() {
+function getIcon(label: string): LucideIcon {
+  return iconMap[label] ?? Code2;
+}
+
+export default function About({ settings }: { settings: SiteSettings }) {
+  const { aboutBio1, aboutBio2, aboutBio3, aboutCompany, aboutRole, aboutHighlights, aboutStats } = settings;
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.08 });
 
   return (
@@ -45,35 +51,22 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.15 }}
           >
             <p className="dark:text-slate-200 text-slate-700 text-sm sm:text-base lg:text-xl leading-[1.8] mb-4 sm:mb-5 font-light">
-              I&apos;m a{" "}
-              <span className="text-[#a78bfa] font-semibold">Full Stack Developer</span>{" "}
-              based in Dhaka, Bangladesh, with over a year of professional experience
-              building production-grade web applications from the ground up.
+              {aboutBio1}
             </p>
             <p className="dark:text-slate-400 text-slate-600 text-sm sm:text-base lg:text-lg leading-[1.8] mb-4 sm:mb-5">
               Currently working as an{" "}
               <span className="text-[#38bdf8] font-medium">
-                Associate Software Engineer at Cassetex
+                {aboutRole} at {aboutCompany}
               </span>
-              , I contribute across the full stack — from designing RESTful APIs and
-              optimizing PostgreSQL databases to automating CI/CD pipelines on Linux
-              VPS via GitHub Actions.
+              {aboutBio2.replace(/^[^,.]*(,|\.)/, "$1")}
             </p>
             <p className="dark:text-slate-400 text-slate-600 text-sm sm:text-base lg:text-lg leading-[1.8] mb-6 sm:mb-8">
-              I hold a{" "}
-              <span className="dark:text-white text-slate-900 font-semibold">B.Sc. in Computer Science and Engineering</span>{" "}
-              from American International University-Bangladesh (AIUB). Passionate
-              about clean architecture, secure systems, and continuously levelling
-              up my craft.
+              {aboutBio3}
             </p>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-5">
-              {[
-                { value: "1+",  label: "Years\nExperience" },
-                { value: "3+",  label: "Projects\nBuilt"    },
-                { value: "8+",  label: "Certifi-\ncations"  },
-              ].map((stat) => (
+              {aboutStats.map((stat) => (
                 <motion.div
                   key={stat.label}
                   whileHover={{ scale: 1.05, y: -4 }}
@@ -93,25 +86,28 @@ export default function About() {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="grid grid-cols-2 gap-4 sm:gap-5"
           >
-            {highlights.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, y: 24 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.35 + i * 0.08 }}
-                whileHover={{ scale: 1.04, y: -5 }}
-                className="dark:bg-[#1a1a2e] bg-slate-50 border dark:border-[#2d2d4e] border-slate-200 rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col items-center text-center gap-3
-                           cursor-default hover:border-[#6c63ff]/50 hover:shadow-xl hover:shadow-purple-900/20 transition-all duration-250"
-              >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#6c63ff]/20 to-[#38bdf8]/20 border border-[#6c63ff]/30 flex items-center justify-center">
-                  <item.icon size={18} className="text-[#a78bfa]" />
-                </div>
-                <div>
-                  <div className="dark:text-white text-slate-800 font-bold text-sm sm:text-base">{item.label}</div>
-                  <div className="text-slate-500 text-xs sm:text-sm mt-0.5 leading-snug">{item.desc}</div>
-                </div>
-              </motion.div>
-            ))}
+            {aboutHighlights.map((item, i) => {
+              const Icon = getIcon(item.label);
+              return (
+                <motion.div
+                  key={item.label}
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.35 + i * 0.08 }}
+                  whileHover={{ scale: 1.04, y: -5 }}
+                  className="dark:bg-[#1a1a2e] bg-slate-50 border dark:border-[#2d2d4e] border-slate-200 rounded-2xl p-4 sm:p-5 lg:p-6 flex flex-col items-center text-center gap-3
+                             cursor-default hover:border-[#6c63ff]/50 hover:shadow-xl hover:shadow-purple-900/20 transition-all duration-250"
+                >
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#6c63ff]/20 to-[#38bdf8]/20 border border-[#6c63ff]/30 flex items-center justify-center">
+                    <Icon size={18} className="text-[#a78bfa]" />
+                  </div>
+                  <div>
+                    <div className="dark:text-white text-slate-800 font-bold text-sm sm:text-base">{item.label}</div>
+                    <div className="text-slate-500 text-xs sm:text-sm mt-0.5 leading-snug">{item.desc}</div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </div>

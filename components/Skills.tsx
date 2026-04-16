@@ -7,54 +7,51 @@ import {
   SiTailwindcss, SiGithubactions, SiTypescript, SiPhp, SiPython,
   SiSharp, SiMysql, SiFigma, SiPostman, SiGit, SiUbuntu, SiSelenium,
 } from "react-icons/si";
+import type { SiteSettings } from "@/lib/types";
 
-type Skill    = { name: string; level: number; color: string };
-type TechBadge = {
-  name: string;
-  icon: React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
-  color: string;
+type IconComponent = React.ComponentType<{ size?: number; className?: string; style?: React.CSSProperties }>;
+
+const ICON_MAP: Record<string, IconComponent> = {
+  "Laravel":         SiLaravel,
+  "Next.js":         SiNextdotjs,
+  "React.js":        SiReact,
+  "PostgreSQL":      SiPostgresql,
+  "Docker":          SiDocker,
+  "Tailwind CSS":    SiTailwindcss,
+  "GitHub Actions":  SiGithubactions,
+  "TypeScript":      SiTypescript,
+  "PHP":             SiPhp,
+  "Python":          SiPython,
+  "C#":              SiSharp,
+  "MySQL":           SiMysql,
+  "Figma":           SiFigma,
+  "Postman":         SiPostman,
+  "Git":             SiGit,
+  "Ubuntu":          SiUbuntu,
+  "Selenium":        SiSelenium,
 };
 
-const skillGroups: { category: string; skills: Skill[] }[] = [
-  {
-    category: "Frontend & Full-stack",
-    skills: [
-      { name: "Next.js",    level: 90, color: "#6c63ff" },
-      { name: "Laravel",    level: 85, color: "#f97316" },
-      { name: "PostgreSQL", level: 88, color: "#38bdf8" },
-      { name: "React.js",   level: 90, color: "#6c63ff" },
-    ],
-  },
-  {
-    category: "Backend & Tools",
-    skills: [
-      { name: "Python",      level: 85, color: "#38bdf8" },
-      { name: "JavaScript",  level: 92, color: "#f59e0b" },
-      { name: "Git / CI-CD", level: 88, color: "#a78bfa" },
-      { name: "Docker",      level: 75, color: "#38bdf8" },
-    ],
-  },
-];
+const BADGE_COLOR: Record<string, string> = {
+  "Laravel":        "#f55247",
+  "Next.js":        "#ffffff",
+  "React.js":       "#61dafb",
+  "PostgreSQL":     "#336791",
+  "Docker":         "#2496ed",
+  "Tailwind CSS":   "#38bdf8",
+  "GitHub Actions": "#2088ff",
+  "TypeScript":     "#3178c6",
+  "PHP":            "#777bb3",
+  "Python":         "#3572a5",
+  "C#":             "#9b4f96",
+  "MySQL":          "#4479a1",
+  "Figma":          "#f24e1e",
+  "Postman":        "#ef5b25",
+  "Git":            "#f05032",
+  "Ubuntu":         "#e95420",
+  "Selenium":       "#43b02a",
+};
 
-const techBadges: TechBadge[] = [
-  { name: "Laravel",        icon: SiLaravel,       color: "#f55247" },
-  { name: "Next.js",        icon: SiNextdotjs,     color: "#ffffff" },
-  { name: "React.js",       icon: SiReact,         color: "#61dafb" },
-  { name: "PostgreSQL",     icon: SiPostgresql,    color: "#336791" },
-  { name: "Docker",         icon: SiDocker,        color: "#2496ed" },
-  { name: "Tailwind CSS",   icon: SiTailwindcss,   color: "#38bdf8" },
-  { name: "GitHub Actions", icon: SiGithubactions, color: "#2088ff" },
-  { name: "TypeScript",     icon: SiTypescript,    color: "#3178c6" },
-  { name: "PHP",            icon: SiPhp,           color: "#777bb3" },
-  { name: "Python",         icon: SiPython,        color: "#3572a5" },
-  { name: "C#",             icon: SiSharp,         color: "#9b4f96" },
-  { name: "MySQL",          icon: SiMysql,         color: "#4479a1" },
-  { name: "Figma",          icon: SiFigma,         color: "#f24e1e" },
-  { name: "Postman",        icon: SiPostman,       color: "#ef5b25" },
-  { name: "Git",            icon: SiGit,           color: "#f05032" },
-  { name: "Ubuntu",         icon: SiUbuntu,        color: "#e95420" },
-  { name: "Selenium",       icon: SiSelenium,      color: "#43b02a" },
-];
+type Skill = { name: string; level: number; color: string };
 
 function VerticalBar({ skill, inView, delay }: { skill: Skill; inView: boolean; delay: number }) {
   return (
@@ -69,7 +66,6 @@ function VerticalBar({ skill, inView, delay }: { skill: Skill; inView: boolean; 
         {skill.level}%
       </motion.span>
 
-      {/* Bar */}
       <div className="relative w-full h-28 sm:h-36 md:h-44 dark:bg-[#2d2d4e] bg-slate-200 rounded-lg sm:rounded-xl overflow-hidden flex items-end">
         <motion.div
           initial={{ height: 0 }}
@@ -88,7 +84,6 @@ function VerticalBar({ skill, inView, delay }: { skill: Skill; inView: boolean; 
         </motion.div>
       </div>
 
-      {/* Label */}
       <span className="text-[10px] sm:text-xs dark:text-slate-300 text-slate-600 font-semibold text-center leading-tight">
         {skill.name}
       </span>
@@ -96,7 +91,8 @@ function VerticalBar({ skill, inView, delay }: { skill: Skill; inView: boolean; 
   );
 }
 
-export default function Skills() {
+export default function Skills({ settings }: { settings: SiteSettings }) {
+  const { skillGroups, techBadges } = settings;
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
@@ -129,15 +125,12 @@ export default function Skills() {
               transition={{ duration: 0.65, delay: gi * 0.15 }}
               className="dark:bg-[#1a1a2e] bg-white border dark:border-[#2d2d4e] border-slate-200 rounded-2xl sm:rounded-3xl p-4 sm:p-7 md:p-8 overflow-hidden"
             >
-              {/* Card heading */}
               <h3 className="dark:text-white text-slate-900 font-bold text-base sm:text-xl mb-0.5 sm:mb-1">
                 {group.category}<span className="text-[#6c63ff]">.</span>
               </h3>
               <p className="dark:text-slate-500 text-slate-400 text-xs mb-4 sm:mb-6 uppercase tracking-wide">
                 Proficiency levels
               </p>
-
-              {/* Bars — always in a single row, sizes adapt via CSS */}
               <div className="flex gap-2 sm:gap-4 md:gap-5 items-end">
                 {group.skills.map((skill, si) => (
                   <VerticalBar
@@ -162,11 +155,12 @@ export default function Skills() {
             Technologies I work with
           </p>
           <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
-            {techBadges.map((tech, i) => {
-              const Icon = tech.icon;
+            {techBadges.map((name, i) => {
+              const Icon = ICON_MAP[name];
+              const color = BADGE_COLOR[name] ?? "#6c63ff";
               return (
                 <motion.div
-                  key={tech.name}
+                  key={name}
                   initial={{ opacity: 0, scale: 0.75, y: 12 }}
                   animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
                   transition={{ delay: 0.6 + i * 0.04, type: "spring", stiffness: 220, damping: 14 }}
@@ -177,22 +171,18 @@ export default function Skills() {
                              rounded-full cursor-default transition-all duration-200"
                   onMouseEnter={(e) => {
                     const el = e.currentTarget as HTMLElement;
-                    el.style.boxShadow   = `0 0 12px ${tech.color}44`;
-                    el.style.borderColor = `${tech.color}55`;
+                    el.style.boxShadow   = `0 0 12px ${color}44`;
+                    el.style.borderColor = `${color}55`;
                   }}
                   onMouseLeave={(e) => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.boxShadow   = "";
-                    el.style.borderColor = ""; // let the CSS class take over
+                    el.style.borderColor = "";
                   }}
                 >
-                  <Icon
-                    size={14}
-                    style={{ color: tech.color }}
-                    className="shrink-0"
-                  />
+                  {Icon && <Icon size={14} style={{ color }} className="shrink-0" />}
                   <span className="text-xs sm:text-sm dark:text-slate-300 text-slate-700 font-medium whitespace-nowrap">
-                    {tech.name}
+                    {name}
                   </span>
                 </motion.div>
               );

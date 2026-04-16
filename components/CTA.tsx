@@ -3,8 +3,10 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Send, ChevronRight } from "lucide-react";
+import type { SiteSettings } from "@/lib/types";
 
-export default function CTA() {
+export default function CTA({ settings }: { settings: SiteSettings }) {
+  const { ctaStats } = settings;
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   const scrollTo = (id: string) => {
@@ -87,12 +89,7 @@ export default function CTA() {
           transition={{ duration: 0.6, delay: 0.45 }}
           className="flex flex-wrap justify-center gap-10 mt-14 pt-10 border-t border-[#2d2d4e]"
         >
-          {[
-            { value: "1+", label: "Years Experience" },
-            { value: "3+", label: "Projects Delivered" },
-            { value: "8+", label: "Certifications" },
-            { value: "100%", label: "Commitment" },
-          ].map((stat, i) => (
+          {ctaStats.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, scale: 0.8 }}

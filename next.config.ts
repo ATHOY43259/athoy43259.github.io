@@ -1,10 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  output: "export",
-  trailingSlash: true,   // required for GitHub Pages routing
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
 };
 
-module.exports = nextConfig;
+export default nextConfig;

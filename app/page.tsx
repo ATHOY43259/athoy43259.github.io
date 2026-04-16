@@ -9,34 +9,23 @@ import Certifications from "@/components/Certifications";
 import CTA            from "@/components/CTA";
 import Contact        from "@/components/Contact";
 import Footer         from "@/components/Footer";
+import { getPortfolioData } from "@/lib/local-data";
 
-import {
-  getExperiences,
-  getProjects,
-  getCertifications,
-  getEducation,
-} from "@/lib/sanity/queries";
-
-export default async function Home() {
-  const [experiences, projects, certifications, education] = await Promise.all([
-    getExperiences(),
-    getProjects(),
-    getCertifications(),
-    getEducation(),
-  ]);
+export default function Home() {
+  const { siteSettings, experiences, projects, certifications, education } = getPortfolioData();
 
   return (
     <main className="min-h-screen overflow-x-hidden dark:bg-[#0f0f1a] bg-white text-slate-900 dark:text-white">
       <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Experience     data={experiences}     />
-      <Projects       data={projects}        />
-      <Education      data={education}       />
-      <Certifications data={certifications}  />
-      <CTA />
-      <Contact />
+      <Hero          settings={siteSettings}    />
+      <About         settings={siteSettings}    />
+      <Skills        settings={siteSettings}    />
+      <Experience    data={experiences}         />
+      <Projects      data={projects}            />
+      <Education     data={education}           />
+      <Certifications data={certifications}     />
+      <CTA           settings={siteSettings}    />
+      <Contact       settings={siteSettings}    />
       <Footer />
     </main>
   );

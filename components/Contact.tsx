@@ -5,10 +5,16 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import type { SiteSettings } from "@/lib/types";
 
-export default function Contact() {
+export default function Contact({ settings }: { settings: SiteSettings }) {
+  const {
+    contactEmail, contactPhone, contactLocation,
+    contactGithub, contactLinkedin,
+    refName, refTitle, refCompany,
+  } = settings;
+
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
-
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
 
@@ -41,15 +47,15 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: Mail,   label: "Email",    value: "athoykanti.roy1612@gmail.com",      href: "mailto:athoykanti.roy1612@gmail.com",                     color: "#6c63ff" },
-    { icon: Phone,  label: "Phone",    value: "+8801735850987",                     href: "tel:+8801735850987",                                      color: "#38bdf8" },
-    { icon: MapPin, label: "Location", value: "Bashundhara R/A, Dhaka, Bangladesh", href: "https://maps.google.com/?q=Bashundhara,Dhaka,Bangladesh", color: "#a78bfa" },
+    { icon: Mail,   label: "Email",    value: contactEmail,    href: `mailto:${contactEmail}`,                              color: "#6c63ff" },
+    { icon: Phone,  label: "Phone",    value: contactPhone,    href: `tel:${contactPhone}`,                                 color: "#38bdf8" },
+    { icon: MapPin, label: "Location", value: contactLocation, href: `https://maps.google.com/?q=${encodeURIComponent(contactLocation)}`, color: "#a78bfa" },
   ];
 
   const socials = [
-    { icon: FaGithub,     label: "GitHub",   href: "https://github.com/ATHOY43259",          color: "#6c63ff" },
-    { icon: FaLinkedinIn, label: "LinkedIn", href: "https://www.linkedin.com/in/athoykanti", color: "#38bdf8" },
-    { icon: Mail,         label: "Email",    href: "mailto:athoykanti.roy1612@gmail.com",     color: "#a78bfa" },
+    { icon: FaGithub,     label: "GitHub",   href: contactGithub,            color: "#6c63ff" },
+    { icon: FaLinkedinIn, label: "LinkedIn", href: contactLinkedin,          color: "#38bdf8" },
+    { icon: Mail,         label: "Email",    href: `mailto:${contactEmail}`, color: "#a78bfa" },
   ];
 
   const inputClass =
@@ -82,7 +88,7 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
 
-          {/* ── Left: info + socials + reference ── */}
+          {/* Left: info + socials + reference */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -152,18 +158,18 @@ export default function Contact() {
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#6c63ff]/20 to-[#38bdf8]/20
                                border border-[#6c63ff]/30 flex items-center justify-center text-lg font-bold text-[#6c63ff] shrink-0">
-                  F
+                  {refName.charAt(0)}
                 </div>
                 <div>
-                  <p className="dark:text-white text-slate-800 font-bold text-sm sm:text-base">Faisal Khan</p>
-                  <p className="dark:text-slate-400 text-slate-500 text-xs sm:text-sm mt-0.5">AGM / Sr SW Architect</p>
-                  <p className="dark:text-slate-500 text-slate-400 text-xs sm:text-sm">Link3 Technologies Ltd</p>
+                  <p className="dark:text-white text-slate-800 font-bold text-sm sm:text-base">{refName}</p>
+                  <p className="dark:text-slate-400 text-slate-500 text-xs sm:text-sm mt-0.5">{refTitle}</p>
+                  <p className="dark:text-slate-500 text-slate-400 text-xs sm:text-sm">{refCompany}</p>
                 </div>
               </div>
             </div>
           </motion.div>
 
-          {/* ── Right: form ── */}
+          {/* Right: form */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}

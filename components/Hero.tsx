@@ -5,23 +5,21 @@ import { motion } from "framer-motion";
 import { ArrowDown, Mail, Phone, MapPin } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import Image from "next/image";
+import type { SiteSettings } from "@/lib/types";
 
-const roles = [
-  "Full Stack Developer",
-  "Laravel Engineer",
-  "Next.js Developer",
-  "API Architect",
-  "DevOps Enthusiast",
-];
+export default function Hero({ settings }: { settings: SiteSettings }) {
+  const {
+    heroName, heroTagline, heroRoles, heroLocation, heroEmail, heroPhone,
+    heroGithub, heroLinkedin, heroExpYears, heroProjectCount, heroProfileImage,
+  } = settings;
 
-export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const typingRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const current = roles[roleIndex];
+    const current = heroRoles[roleIndex] ?? "";
     const speed = isDeleting ? 50 : 100;
 
     typingRef.current = setTimeout(() => {
@@ -34,7 +32,7 @@ export default function Hero() {
         setDisplayed(current.slice(0, displayed.length - 1));
         if (displayed.length - 1 === 0) {
           setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
+          setRoleIndex((prev) => (prev + 1) % heroRoles.length);
         }
       }
     }, speed);
@@ -42,7 +40,7 @@ export default function Hero() {
     return () => {
       if (typingRef.current) clearTimeout(typingRef.current);
     };
-  }, [displayed, isDeleting, roleIndex]);
+  }, [displayed, isDeleting, roleIndex, heroRoles]);
 
   const handleScrollDown = () => {
     const el = document.getElementById("about");
@@ -85,7 +83,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
             >
               Hi, I&apos;m{" "}
-              <span className="gradient-text">Athoy Kanti Ray</span>
+              <span className="gradient-text">{heroName}</span>
             </motion.h1>
 
             <motion.div
@@ -104,12 +102,7 @@ export default function Hero() {
               transition={{ delay: 0.5 }}
               className="text-slate-400 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Full Stack Developer building scalable web applications using{" "}
-              <span className="text-[#a78bfa] font-medium">Laravel</span>,{" "}
-              <span className="text-[#38bdf8] font-medium">Next.js</span>, and{" "}
-              <span className="text-[#a78bfa] font-medium">PostgreSQL</span>.
-              Passionate about clean APIs, CI/CD automation, and delivering
-              user-centric software.
+              {heroTagline}
             </motion.p>
 
             {/* Info pills */}
@@ -121,15 +114,15 @@ export default function Hero() {
             >
               <span className="flex items-center gap-1.5">
                 <MapPin size={14} className="text-[#6c63ff]" />
-                Dhaka, Bangladesh
+                {heroLocation}
               </span>
               <span className="flex items-center gap-1.5">
                 <Mail size={14} className="text-[#6c63ff]" />
-                athoykanti.roy1612@gmail.com
+                {heroEmail}
               </span>
               <span className="flex items-center gap-1.5">
                 <Phone size={14} className="text-[#6c63ff]" />
-                +8801735850987
+                {heroPhone}
               </span>
             </motion.div>
 
@@ -142,7 +135,7 @@ export default function Hero() {
             >
               <motion.a
                 href="/cv.pdf"
-                download="Athoy_Kanti_Ray_CV.pdf"
+                download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#6c63ff] to-[#a78bfa] text-white font-semibold shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-200"
@@ -170,21 +163,9 @@ export default function Hero() {
               className="flex gap-4 justify-center lg:justify-start"
             >
               {[
-                {
-                  icon: FaGithub,
-                  href: "https://github.com/ATHOY43259",
-                  label: "GitHub",
-                },
-                {
-                  icon: FaLinkedinIn,
-                  href: "https://www.linkedin.com/in/athoykanti",
-                  label: "LinkedIn",
-                },
-                {
-                  icon: Mail,
-                  href: "mailto:athoykanti.roy1612@gmail.com",
-                  label: "Email",
-                },
+                { icon: FaGithub,     href: heroGithub,   label: "GitHub"   },
+                { icon: FaLinkedinIn, href: heroLinkedin, label: "LinkedIn" },
+                { icon: Mail,         href: `mailto:${heroEmail}`, label: "Email" },
               ].map(({ icon: Icon, href, label }) => (
                 <motion.a
                   key={label}
@@ -223,21 +204,21 @@ export default function Hero() {
               {/* Profile image */}
               <div className="floating relative z-10 w-56 h-56 sm:w-72 sm:h-72 rounded-full overflow-hidden border-4 border-[#0f0f1a]">
                 <Image
-                  src="/profile.jpg"
-                  alt="Athoy Kanti Ray"
+                  src={heroProfileImage}
+                  alt={heroName}
                   fill
                   className="object-cover object-top"
                   priority
                 />
               </div>
 
-              {/* Floating badges — hidden on smallest screens to avoid overflow */}
+              {/* Floating badges */}
               <motion.div
                 animate={{ y: [-4, 4, -4] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 className="hidden xs:block absolute -right-2 sm:-right-4 top-8 sm:top-10 bg-[#1a1a2e] border border-[#2d2d4e] rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs font-medium shadow-lg glow-purple"
               >
-                <span className="text-[#6c63ff]">1+</span>{" "}
+                <span className="text-[#6c63ff]">{heroExpYears}</span>{" "}
                 <span className="text-slate-300">Yrs Exp.</span>
               </motion.div>
               <motion.div
@@ -245,7 +226,7 @@ export default function Hero() {
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
                 className="hidden xs:block absolute -left-2 sm:-left-4 bottom-12 sm:bottom-16 bg-[#1a1a2e] border border-[#2d2d4e] rounded-xl px-2.5 py-1.5 sm:px-3 sm:py-2 text-xs font-medium shadow-lg glow-blue"
               >
-                <span className="text-[#38bdf8]">3+</span>{" "}
+                <span className="text-[#38bdf8]">{heroProjectCount}</span>{" "}
                 <span className="text-slate-300">Projects</span>
               </motion.div>
             </div>
