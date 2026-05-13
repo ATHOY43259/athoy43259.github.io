@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/components/ThemeProvider";
+import ScrollRestoration from "@/components/ScrollRestoration";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth overflow-x-hidden" suppressHydrationWarning>
       <body className={`${inter.className} overflow-x-hidden`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ScrollRestoration />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
