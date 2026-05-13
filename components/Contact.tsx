@@ -11,7 +11,7 @@ export default function Contact({ settings }: { settings: SiteSettings }) {
   const {
     contactEmail, contactPhone, contactLocation,
     contactGithub, contactLinkedin,
-    refName, refTitle, refCompany,
+    references,
   } = settings;
 
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
@@ -243,19 +243,23 @@ export default function Contact({ settings }: { settings: SiteSettings }) {
               ))}
             </div>
 
-            {/* Reference card */}
+            {/* Reference cards */}
             <div className="dark:bg-[#1a1a2e] bg-white border dark:border-[#2d2d4e] border-slate-200 rounded-2xl p-4 sm:p-5">
-              <p className="dark:text-slate-500 text-slate-400 text-xs uppercase tracking-[0.15em] mb-3 font-medium">Reference</p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#6c63ff]/20 to-[#38bdf8]/20
-                               border border-[#6c63ff]/30 flex items-center justify-center text-lg font-bold text-[#6c63ff] shrink-0">
-                  {refName.charAt(0)}
-                </div>
-                <div>
-                  <p className="dark:text-white text-slate-800 font-bold text-sm sm:text-base">{refName}</p>
-                  <p className="dark:text-slate-400 text-slate-500 text-xs sm:text-sm mt-0.5">{refTitle}</p>
-                  <p className="dark:text-slate-500 text-slate-400 text-xs sm:text-sm">{refCompany}</p>
-                </div>
+              <p className="dark:text-slate-500 text-slate-400 text-xs uppercase tracking-[0.15em] mb-3 font-medium">References</p>
+              <div className="flex flex-col gap-4">
+                {references.map((ref, i) => (
+                  <div key={i} className="flex items-center gap-3">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-[#6c63ff]/20 to-[#38bdf8]/20
+                                   border border-[#6c63ff]/30 flex items-center justify-center text-lg font-bold text-[#6c63ff] shrink-0">
+                      {ref.name.charAt(0)}
+                    </div>
+                    <div>
+                      <p className="dark:text-white text-slate-800 font-bold text-sm sm:text-base">{ref.name}</p>
+                      <p className="dark:text-slate-400 text-slate-500 text-xs sm:text-sm mt-0.5">{ref.title}</p>
+                      <p className="dark:text-slate-500 text-slate-400 text-xs sm:text-sm">{ref.company}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>

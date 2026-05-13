@@ -79,6 +79,10 @@ export const fallbackSiteSettings: SiteSettings = {
   refName:         "Faisal Khan",
   refTitle:        "AGM / Sr SW Architect",
   refCompany:      "Link3 Technologies Ltd",
+  references: [
+    { name: "Faisal Khan",      title: "AGM / Sr SW Architect",                                    company: "Link3 Technologies Ltd" },
+    { name: "S M Hasan Mahmud", title: "Associate Professor, Department of Software Engineering",  company: "Daffodil International University" },
+  ],
 
   // CTA
   ctaStats: [

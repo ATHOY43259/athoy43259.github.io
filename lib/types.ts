@@ -33,6 +33,7 @@ export interface SiteSettings {
   refName:          string;
   refTitle:         string;
   refCompany:       string;
+  references:       { name: string; title: string; company: string }[];
   // CTA
   ctaStats:         { value: string; label: string }[];
 }
