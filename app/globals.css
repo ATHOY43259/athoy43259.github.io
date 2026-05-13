@@ -119,3 +119,6 @@ section { padding-top: 4rem; padding-bottom: 4rem; }
 @media (min-width: 1024px) {
   section { padding-top: 7rem; padding-bottom: 7rem; }
 }
+
+/* ── Offset anchor scroll for fixed navbar (h-16 = 64px) ── */
+section[id] { scroll-margin-top: 64px; }
