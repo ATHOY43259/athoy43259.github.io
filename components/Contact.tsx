@@ -31,6 +31,7 @@ export default function Contact({ settings }: { settings: SiteSettings }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "",
+          to_email:   "athoykanti.roy1612@gmail.com",
           subject:    `[Portfolio] ${form.subject}`,
           from_name:  form.name,
           replyto:    form.email,
