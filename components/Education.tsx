@@ -72,13 +72,6 @@ export default function Education({ data }: { data: SanityEducation[] }) {
                   </span>
                 </div>
 
-                {edu.grade && (
-                  <div className="mt-5 inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                                  dark:bg-[#1e1e3a] bg-slate-100 border dark:border-[#2d2d4e] border-slate-200">
-                    <span className="text-xs font-semibold uppercase tracking-wider dark:text-slate-400 text-slate-500">CGPA</span>
-                    <span className="text-lg font-bold dark:text-white text-slate-900">{edu.grade}</span>
-                  </div>
-                )}
 
                 {edu.highlights.length > 0 && (
                   <div className="mt-6 pt-6 border-t dark:border-[#252545] border-slate-100">

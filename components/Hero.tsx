@@ -134,7 +134,7 @@ export default function Hero({ settings }: { settings: SiteSettings }) {
               className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10"
             >
               <motion.a
-                href="/cv.pdf"
+                href="/Athoy_Kanti_Ray.pdf"
                 download
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}

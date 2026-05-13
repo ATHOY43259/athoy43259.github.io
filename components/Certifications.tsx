@@ -1,79 +1,166 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Award, ExternalLink, CheckCircle } from "lucide-react";
+import { CheckCircle2, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import type { SanityCertification } from "@/lib/types";
+
+const BADGE_STYLES: Record<string, string> = {
+  "Professional Certificate": "bg-[#6c63ff] text-white",
+  "Specialization":           "bg-[#a78bfa] text-white",
+};
+
+function CertCard({ cert, index, inView }: { cert: SanityCertification; index: number; inView: boolean }) {
+  const [expanded, setExpanded] = useState(false);
+  const courseCount = cert.courses?.length ?? 0;
+  const badgeClass  = cert.badge ? (BADGE_STYLES[cert.badge] ?? "bg-slate-500 text-white") : "";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      className="dark:bg-[#13132a] bg-white border dark:border-[#252545] border-slate-200 rounded-2xl overflow-hidden shadow-sm"
+    >
+      {/* Card body */}
+      <div className="p-6 sm:p-7">
+
+        {/* Row 1: icon + meta */}
+        <div className="flex items-center gap-3 mb-4">
+          <CheckCircle2 size={22} style={{ color: cert.color }} className="shrink-0" />
+          {cert.badge && (
+            <span className={`text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full ${badgeClass}`}>
+              {cert.badge}
+            </span>
+          )}
+          <span className="dark:text-slate-400 text-slate-500 text-sm">{cert.date}</span>
+          {courseCount > 0 && (
+            <span className="dark:text-slate-400 text-slate-500 text-sm">
+              {courseCount} courses
+            </span>
+          )}
+        </div>
+
+        {/* Row 2: title */}
+        <h3 className="text-lg sm:text-xl font-bold dark:text-white text-slate-900 leading-snug mb-1">
+          {cert.title}
+        </h3>
+
+        {/* Row 3: issuer */}
+        <p className="text-sm dark:text-slate-400 text-slate-500 mb-2">{cert.issuer}</p>
+
+        {/* Row 4: description */}
+        {cert.description && (
+          <p className="text-sm dark:text-slate-400 text-slate-500 leading-relaxed mb-5">
+            {cert.description}
+          </p>
+        )}
+
+        {/* Row 5: verify + toggle */}
+        <div className="flex items-center justify-between gap-4 mt-4">
+          {cert.link ? (
+            <a
+              href={cert.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#6c63ff] hover:underline"
+            >
+              <ExternalLink size={13} />
+              Verify
+            </a>
+          ) : (
+            <span />
+          )}
+
+          {courseCount > 0 && (
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="inline-flex items-center gap-1 text-sm font-semibold text-[#6c63ff] hover:underline"
+            >
+              {expanded ? "Hide courses" : "Show courses"}
+              {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Expandable courses */}
+      <AnimatePresence initial={false}>
+        {expanded && cert.courses && (
+          <motion.div
+            key="courses"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: "easeInOut" }}
+            className="overflow-hidden"
+          >
+            <div className="dark:bg-[#0d0d22] bg-slate-50 border-t dark:border-[#252545] border-slate-200 px-6 sm:px-7 py-5">
+              <p className="text-xs font-bold uppercase tracking-widest dark:text-slate-500 text-slate-400 mb-4">
+                Courses Included
+              </p>
+              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                {cert.courses.map((course, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <span
+                      className="mt-[7px] w-[6px] h-[6px] rounded-full shrink-0"
+                      style={{ background: cert.color }}
+                    />
+                    {course.link ? (
+                      <a
+                        href={course.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-[#6c63ff] hover:underline leading-snug"
+                      >
+                        {course.title}
+                      </a>
+                    ) : (
+                      <span className="text-sm dark:text-slate-400 text-slate-600 leading-snug">
+                        {course.title}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
 
 export default function Certifications({ data }: { data: SanityCertification[] }) {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.06 });
 
   return (
     <section id="certifications" ref={ref} className="py-14 sm:py-20 lg:py-28 dark:bg-[#0f0f1a] bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-12">
+      <div className="max-w-4xl mx-auto px-5 sm:px-8 lg:px-12">
 
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 sm:mb-14"
+          className="mb-10 sm:mb-14"
         >
-          <span className="text-[#6c63ff] text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">Credentials</span>
+          <span className="text-[#6c63ff] text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] sm:tracking-[0.2em]">
+            Credentials
+          </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mt-2 sm:mt-3 dark:text-white text-slate-900">
-            My <span className="gradient-text">Certifications</span>
+            Certifications<span className="text-[#6c63ff]">.</span>
           </h2>
-          <div className="mt-4 h-1 w-16 sm:w-20 bg-gradient-to-r from-[#6c63ff] to-[#38bdf8] mx-auto rounded-full" />
-          <p className="dark:text-slate-400 text-slate-500 text-sm sm:text-base mt-3 sm:mt-4 max-w-xl mx-auto leading-relaxed">
-            Professional certifications from IBM and ICT Division validating my skills in software engineering, DevOps, and cloud computing.
+          <p className="dark:text-slate-400 text-slate-500 text-sm sm:text-base mt-3 sm:mt-4 max-w-xl leading-relaxed">
+            Professional certificates and courses from leading institutions.
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-5 sm:gap-6">
+        {/* Cards */}
+        <div className="flex flex-col gap-5">
           {data.map((cert, i) => (
-            <motion.a
-              key={cert._id ?? cert.title}
-              href={cert.link ?? "#"}
-              target={cert.link ? "_blank" : undefined}
-              rel={cert.link ? "noopener noreferrer" : undefined}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -8 }}
-              className="group flex flex-col dark:bg-[#1a1a2e] bg-slate-50 border dark:border-[#2d2d4e] border-slate-200 rounded-3xl p-7 sm:p-8
-                         transition-all duration-250 shadow-md hover:shadow-2xl"
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = `${cert.color}50`;
-                (e.currentTarget as HTMLElement).style.boxShadow   = `0 20px 50px ${cert.color}18`;
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor = "";
-                (e.currentTarget as HTMLElement).style.boxShadow   = "";
-              }}
-            >
-              <div className="flex items-start justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-                  style={{ background: `${cert.color}20`, border: `1.5px solid ${cert.color}40` }}>
-                  <Award size={22} style={{ color: cert.color }} />
-                </div>
-                {cert.link
-                  ? <ExternalLink size={16} className="dark:text-slate-600 text-slate-400 group-hover:text-[#6c63ff] transition-colors mt-1" />
-                  : <CheckCircle  size={16} className="dark:text-slate-600 text-slate-400 mt-1" />
-                }
-              </div>
-
-              <h3 className="dark:text-white text-slate-900 font-bold text-base leading-snug mb-2 group-hover:text-[#a78bfa] transition-colors duration-200 flex-1">
-                {cert.title}
-              </h3>
-
-              <p className="dark:text-slate-500 text-slate-400 text-sm mb-5">{cert.issuer}</p>
-
-              <span className="inline-block self-start text-sm px-3 py-1 rounded-full font-semibold"
-                style={{ background: `${cert.color}15`, color: cert.color, border: `1px solid ${cert.color}30` }}>
-                {cert.date}
-              </span>
-            </motion.a>
+            <CertCard key={cert._id ?? cert.title} cert={cert} index={i} inView={inView} />
           ))}
         </div>
       </div>

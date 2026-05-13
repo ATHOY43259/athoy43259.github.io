@@ -310,68 +310,48 @@
   ],
   "certifications": [
     {
-      "title": "Full Stack Software Developer Assessment",
+      "title": "IBM Full Stack Software Developer",
       "issuer": "IBM / Coursera",
-      "date": "2025",
-      "link": "https://www.coursera.org/account/accomplishments/verify/RYJ9D4CIX51L",
+      "date": "May 2026",
+      "credentialId": "XKPFJH2B7MME",
+      "badge": "Professional Certificate",
+      "description": "15-course program covering full-stack web development with React, Node.js, Python, Django, Containers, Microservices, and Generative AI.",
+      "link": "https://www.coursera.org/account/accomplishments/professional-cert/XKPFJH2B7MME",
       "color": "#6c63ff",
+      "courses": [
+        { "title": "Introduction to Software Engineering",                              "link": "https://www.coursera.org/account/accomplishments/records/GZ15SU3IRAQ7" },
+        { "title": "Introduction to Cloud Computing",                                   "link": "https://www.coursera.org/account/accomplishments/verify/XQGSMI3ZS4K4" },
+        { "title": "Introduction to HTML, CSS, & JavaScript",                           "link": "https://www.coursera.org/account/accomplishments/records/1NQONB26WV5D" },
+        { "title": "Getting Started with Git and GitHub",                               "link": "https://www.coursera.org/account/accomplishments/verify/NS3MZ8JHBNOD" },
+        { "title": "Developing Front-End Apps with React",                              "link": "https://www.coursera.org/account/accomplishments/records/207U3VY8R4VC" },
+        { "title": "Developing Back-End Apps with Node.js and Express",                 "link": "https://www.coursera.org/account/accomplishments/records/J9ULFH5YHPKY" },
+        { "title": "Python for Data Science, AI & Development",                         "link": "https://www.coursera.org/account/accomplishments/records/7R1F65ZFRI4D" },
+        { "title": "Developing AI Applications with Python and Flask",                  "link": "https://www.coursera.org/account/accomplishments/records/HCZ1QCWGAWKD" },
+        { "title": "Django Application Development with SQL and Databases",             "link": "https://www.coursera.org/account/accomplishments/records/NQS2NMDIE179" },
+        { "title": "Introduction to Containers w/ Docker, Kubernetes & OpenShift",     "link": "https://www.coursera.org/account/accomplishments/records/9ABZ8LVYMOUJ" },
+        { "title": "Application Development using Microservices and Serverless",        "link": "https://www.coursera.org/account/accomplishments/verify/FG868WSI6GHT" },
+        { "title": "Full Stack Application Development Capstone Project",               "link": "https://www.coursera.org/account/accomplishments/records/F36YTAJQXT37" },
+        { "title": "Full Stack Software Developer Assessment",                          "link": "https://www.coursera.org/account/accomplishments/records/RYJ9D4CIX51L" },
+        { "title": "Generative AI: Elevate your Software Development Career",           "link": "https://www.coursera.org/account/accomplishments/records/0ULNHBVV99RN" },
+        { "title": "Software Developer Career Guide and Interview Preparation",         "link": "https://www.coursera.org/account/accomplishments/records/M5021WQCJQZT" }
+      ],
       "order": 0
     },
     {
       "title": "IBM DevOps, Cloud, and Agile Foundations",
       "issuer": "IBM / Coursera",
-      "date": "2025",
+      "date": "Apr 2026",
+      "credentialId": "3OG41WB79T3D",
+      "badge": "Specialization",
+      "description": "3-course foundational specialization covering DevOps principles, Cloud Computing essentials, and Agile/Scrum methodology.",
       "link": "https://www.coursera.org/account/accomplishments/specialization/3OG41WB79T3D",
       "color": "#a78bfa",
+      "courses": [
+        { "title": "Introduction to DevOps",                       "link": "https://www.coursera.org/account/accomplishments/records/LP4THQPQJH33" },
+        { "title": "Introduction to Cloud Computing",              "link": "https://www.coursera.org/account/accomplishments/records/XQGSMI3ZS4K4" },
+        { "title": "Introduction to Agile Development and Scrum",  "link": "https://www.coursera.org/account/accomplishments/records/FKDTP97PG72O" }
+      ],
       "order": 1
-    },
-    {
-      "title": "Introduction to DevOps",
-      "issuer": "IBM / Coursera",
-      "date": "Feb 2026",
-      "link": "https://www.coursera.org/account/accomplishments/verify/LP4THQPQJH33",
-      "color": "#38bdf8",
-      "order": 2
-    },
-    {
-      "title": "Introduction to Software Engineering",
-      "issuer": "IBM / Coursera",
-      "date": "Feb 2026",
-      "link": "https://www.coursera.org/account/accomplishments/verify/GZ15SU3IRAQ7",
-      "color": "#6c63ff",
-      "order": 3
-    },
-    {
-      "title": "Getting Started with Git and GitHub",
-      "issuer": "IBM / Coursera",
-      "date": "Nov 2025",
-      "link": "https://www.coursera.org/account/accomplishments/verify/NS3MZ8JHBNOD",
-      "color": "#a78bfa",
-      "order": 4
-    },
-    {
-      "title": "Introduction to Cloud Computing",
-      "issuer": "IBM / Coursera",
-      "date": "2025",
-      "link": "https://www.coursera.org/account/accomplishments/verify/XQGSMI3ZS4K4",
-      "color": "#38bdf8",
-      "order": 5
-    },
-    {
-      "title": "Introduction to HTML, CSS, & JavaScript",
-      "issuer": "IBM / Coursera",
-      "date": "2025",
-      "link": "https://www.coursera.org/account/accomplishments/verify/1NQONB26WV5D",
-      "color": "#f97316",
-      "order": 6
-    },
-    {
-      "title": "Quality Assurance and Software Testing",
-      "issuer": "ICT Division EDGE",
-      "date": "2024",
-      "link": null,
-      "color": "#10b981",
-      "order": 7
     }
   ]
 }

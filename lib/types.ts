@@ -64,14 +64,23 @@ export interface SanityProject {
   order?:      number;
 }
 
+export interface CertificationCourse {
+  title: string;
+  link:  string | null;
+}
+
 export interface SanityCertification {
-  _id?:   string;
-  title:  string;
-  issuer: string;
-  date:   string;
-  link:   string | null;
-  color:  string;
-  order?: number;
+  _id?:          string;
+  title:         string;
+  issuer:        string;
+  date:          string;
+  credentialId?: string;
+  badge?:        string;
+  description?:  string;
+  link:          string | null;
+  color:         string;
+  courses?:      CertificationCourse[];
+  order?:        number;
 }
 
 export interface SanityEducation {
