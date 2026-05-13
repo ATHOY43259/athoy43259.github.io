@@ -30,10 +30,6 @@ export interface SiteSettings {
   contactLocation:  string;
   contactGithub:    string;
   contactLinkedin:  string;
-  refName:          string;
-  refTitle:         string;
-  refCompany:       string;
-  references:       { name: string; title: string; company: string }[];
   // CTA
   ctaStats:         { value: string; label: string }[];
 }

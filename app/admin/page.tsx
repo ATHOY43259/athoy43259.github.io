@@ -38,7 +38,6 @@ interface PortfolioData {
     techBadges: string[];
     contactEmail: string; contactPhone: string; contactLocation: string;
     contactGithub: string; contactLinkedin: string;
-    refName: string; refTitle: string; refCompany: string;
     ctaStats: { value: string; label: string }[];
   };
   experiences:    Experience[];
@@ -331,18 +330,6 @@ function ContactSection({ s, set }: { s: PortfolioData["siteSettings"]; set: (k:
         </Field>
         <Field label="LinkedIn URL">
           <Input value={s.contactLinkedin} onChange={(v) => set("contactLinkedin", v)} />
-        </Field>
-      </div>
-      <p className="text-xs text-slate-500 uppercase tracking-wider font-medium pt-2 border-t border-[#2d2d4e]">Reference Person</p>
-      <div className="grid sm:grid-cols-3 gap-5">
-        <Field label="Full Name">
-          <Input value={s.refName} onChange={(v) => set("refName", v)} />
-        </Field>
-        <Field label="Job Title">
-          <Input value={s.refTitle} onChange={(v) => set("refTitle", v)} />
-        </Field>
-        <Field label="Company">
-          <Input value={s.refCompany} onChange={(v) => set("refCompany", v)} />
         </Field>
       </div>
     </div>
