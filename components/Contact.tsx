@@ -31,101 +31,10 @@ export default function Contact({ settings }: { settings: SiteSettings }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "",
-          to_email:   "athoykanti.roy1612@gmail.com",
           subject:    `[Portfolio] ${form.subject}`,
           from_name:  form.name,
           replyto:    form.email,
-          message:    `Name: ${form.name} | Email: ${form.email} | Subject: ${form.subject}\n\n${form.message}`,
-          html: `
-<!DOCTYPE html>
-<html>
-<head><meta charset="UTF-8"/></head>
-<body style="margin:0;padding:0;background:#f4f4f8;font-family:Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f8;padding:32px 0;">
-    <tr><td align="center">
-      <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
-
-        <!-- Header -->
-        <tr>
-          <td style="background:linear-gradient(135deg,#6c63ff 0%,#a78bfa 100%);padding:36px 40px;text-align:center;">
-            <h1 style="margin:0;color:#ffffff;font-size:24px;font-weight:700;letter-spacing:-0.5px;">
-              📬 New Portfolio Message
-            </h1>
-            <p style="margin:8px 0 0;color:rgba(255,255,255,0.8);font-size:14px;">
-              Someone reached out via your portfolio contact form
-            </p>
-          </td>
-        </tr>
-
-        <!-- Body -->
-        <tr>
-          <td style="padding:36px 40px;">
-
-            <!-- Info cards -->
-            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-              <tr>
-                <td width="48%" style="background:#f8f7ff;border-radius:10px;padding:16px 18px;vertical-align:top;">
-                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6c63ff;text-transform:uppercase;letter-spacing:1px;">From</p>
-                  <p style="margin:0;font-size:15px;font-weight:600;color:#1a1a2e;">${form.name}</p>
-                </td>
-                <td width="4%"></td>
-                <td width="48%" style="background:#f8f7ff;border-radius:10px;padding:16px 18px;vertical-align:top;">
-                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6c63ff;text-transform:uppercase;letter-spacing:1px;">Email</p>
-                  <p style="margin:0;font-size:15px;font-weight:600;color:#1a1a2e;">${form.email}</p>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Subject -->
-            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
-              <tr>
-                <td style="background:#f8f7ff;border-radius:10px;padding:16px 18px;">
-                  <p style="margin:0 0 4px;font-size:11px;font-weight:700;color:#6c63ff;text-transform:uppercase;letter-spacing:1px;">Subject</p>
-                  <p style="margin:0;font-size:15px;font-weight:600;color:#1a1a2e;">${form.subject}</p>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Message -->
-            <table width="100%" cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="background:#f8f7ff;border-radius:10px;padding:20px 18px;">
-                  <p style="margin:0 0 10px;font-size:11px;font-weight:700;color:#6c63ff;text-transform:uppercase;letter-spacing:1px;">Message</p>
-                  <p style="margin:0;font-size:15px;color:#374151;line-height:1.7;white-space:pre-wrap;">${form.message}</p>
-                </td>
-              </tr>
-            </table>
-
-            <!-- Reply CTA -->
-            <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:32px;">
-              <tr>
-                <td align="center">
-                  <a href="mailto:${form.email}?subject=Re: ${form.subject}"
-                     style="display:inline-block;background:linear-gradient(135deg,#6c63ff,#a78bfa);color:#ffffff;text-decoration:none;font-size:14px;font-weight:700;padding:14px 36px;border-radius:50px;letter-spacing:0.3px;">
-                    ↩ Reply to ${form.name}
-                  </a>
-                </td>
-              </tr>
-            </table>
-
-          </td>
-        </tr>
-
-        <!-- Footer -->
-        <tr>
-          <td style="background:#f8f7ff;padding:20px 40px;text-align:center;border-top:1px solid #ede9fe;">
-            <p style="margin:0;font-size:12px;color:#9ca3af;">
-              Sent from your portfolio at
-              <a href="https://athoy43259.github.io" style="color:#6c63ff;text-decoration:none;font-weight:600;">athoy43259.github.io</a>
-            </p>
-          </td>
-        </tr>
-
-      </table>
-    </td></tr>
-  </table>
-</body>
-</html>`,
+          message:    `Name: ${form.name}\nEmail: ${form.email}\nSubject: ${form.subject}\n\n${form.message}`,
         }),
       });
       const data = await res.json();
